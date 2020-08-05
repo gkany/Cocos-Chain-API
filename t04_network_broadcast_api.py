@@ -170,5 +170,64 @@ Ran 4 tests in 0.025s
 
 OK (skipped=3)
 
+######################## 根据broadcast_transaction api返回的transaction_id，链上交易查询结果如下：
+unlocked >>> get_transaction_in_block_info 84e6e8f0e00876bcec396cb57d2c8d47d848502bba25555f9019b65e843ef166 
+get_transaction_in_block_info 84e6e8f0e00876bcec396cb57d2c8d47d848502bba25555f9019b65e843ef166 
+{
+  "id": "3.1.1265",
+  "block_num": 11713,
+  "trx_in_block": 0,
+  "trx_hash": "84e6e8f0e00876bcec396cb57d2c8d47d848502bba25555f9019b65e843ef166"
+}
+unlocked >>> get_block 11713
+get_block 11713
+{
+  "previous": "00002dc0b2dcff5248e30fa7de5a5740f0fb1e66",
+  "timestamp": "2020-08-05T08:39:54",
+  "witness": "1.6.1",
+  "transaction_merkle_root": "851e5c946306adb09f43ab6d4521bfd7883ebe7b",
+  "witness_signature": "2008e4324d8db04074b6a697ac642ee78731a30264bcced1bf5ce56c1f8ab370fb1feb8af5783b70bbeed4f4f667ee7ec05dec78f7520929a887d4533afa2dda18",
+  "block_id": "00002dc1999e0b3ca5d0ecfce5a143383603f2c6",
+  "transactions": [[
+      "84e6e8f0e00876bcec396cb57d2c8d47d848502bba25555f9019b65e843ef166",{
+        "ref_block_num": 11704,
+        "ref_block_prefix": 669180122,
+        "expiration": "2020-08-05T09:00:22",
+        "operations": [[
+            0,{
+              "from": "1.2.16",
+              "to": "1.2.6",
+              "amount": {
+                "amount": 10000,
+                "asset_id": "1.3.0"
+              },
+              "memo": [
+                0,
+                "test broadcast_transaction"
+              ],
+              "extensions": []
+            }
+          ]
+        ],
+        "extensions": [],
+        "signatures": [
+          "20155fb6f99c2498448a5b63425536fa207210d78a5441c26fa6440a92af093e191ddb728503781c496e81532ad33d50593747f01b017cf20c0607ad107eb4b94d"
+        ],
+        "operation_results": [[
+            1,{
+              "fees": [{
+                  "amount": 2028320,
+                  "asset_id": "1.3.0"
+                }
+              ],
+              "real_running_time": 109
+            }
+          ]
+        ]
+      }
+    ]
+  ]
+}
+unlocked >>> 
 '''
 
