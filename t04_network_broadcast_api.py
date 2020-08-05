@@ -42,7 +42,7 @@ class test_network_broadcast_api(websocket_unittest):
 # (broadcast_transaction)(broadcast_transaction_with_callback)
 # (broadcast_transaction_synchronous)(broadcast_block))
 
-    @unittest.skipIf(True, 'test other')
+    @unittest.skipIf(False, 'test other')
     def test_broadcast_transaction(self):
         req_data = {
             "method": "transfer",
@@ -66,6 +66,7 @@ class test_network_broadcast_api(websocket_unittest):
 # {u'jsonrpc': u'2.0', u'id': 1, u'result': [u'fce1dd11e37a1f5dabb51f85656444965b1bb1a60237743a54d83271d1f70f7e', {u'ref_block_prefix': 1028192142, u'operations': [[0, {u'to': u'1.2.6', u'amount': {u'asset_id': u'1.3.0', u'amount': 10000}, u'from': u'1.2.17', u'memo': [0, u'test broadcast_transaction_with_callback'], u'extensions': []}]], u'signatures': [u'205128e407b696d9ca580e231ac85b9b5ec7e98b783baf52a94289ced3162dc60244c45a541500efe7583eb216c57cefe53b08df49b735826af55b9688ddbd1aae'], u'ref_block_num': 13697, u'extensions': [], u'expiration': u'2019-12-03T09:31:24'}]}
 
 #   void broadcast_transaction_with_callback(confirmation_callback cb, const signed_transaction &trx);
+    @unittest.skipIf(True, 'test other')
     def test_broadcast_transaction_with_callback(self):
         req_data = {
             "method": "transfer",
@@ -140,3 +141,34 @@ TypeError: <function test_callback at 0x7fab41f35140> is not JSON serializable
 
 回调函数json序列化问题
 '''
+'''
+dev@ubuntu:~/data/mrepo/Cocos-chain-api$ python3 t04_network_broadcast_api.py 
+>> call [1, 'network_broadcast', []]
+{'jsonrpc': '2.0', 'result': 2, 'id': 1}
+
+>> unlock ['123456']
+{'jsonrpc': '2.0', 'result': None, 'id': 1}
+
+>> import_key ['nicotest', '5J2SChqa9QxrCkdMor9VC2k9NT4R4ctRrJA6odQCPkb3yL89vxo']
+{'jsonrpc': '2.0', 'result': True, 'id': 1}
+
+setUpClass done
+
+s>> transfer ['nicotest', 'init1', '0.1', 'COCOS', ['test broadcast_transaction', 'false'], 'false']
+{'jsonrpc': '2.0', 'result': ['84e6e8f0e00876bcec396cb57d2c8d47d848502bba25555f9019b65e843ef166', {'extensions': [], 'ref_block_num': 11704, 'expiration': '2020-08-05T09:00:22', 'ref_block_prefix': 669180122, 'operations': [[0, {'to': '1.2.6', 'amount': {'amount': 10000, 'asset_id': '1.3.0'}, 'extensions': [], 'memo': [0, 'test broadcast_transaction'], 'from': '1.2.16'}]], 'signatures': ['20155fb6f99c2498448a5b63425536fa207210d78a5441c26fa6440a92af093e191ddb728503781c496e81532ad33d50593747f01b017cf20c0607ad107eb4b94d']}], 'id': 1}
+
+>> call [2, 'broadcast_transaction', [{'extensions': [], 'ref_block_num': 11704, 'expiration': '2020-08-05T09:00:22', 'ref_block_prefix': 669180122, 'operations': [[0, {'to': '1.2.6', 'amount': {'amount': 10000, 'asset_id': '1.3.0'}, 'extensions': [], 'memo': [0, 'test broadcast_transaction'], 'from': '1.2.16'}]], 'signatures': ['20155fb6f99c2498448a5b63425536fa207210d78a5441c26fa6440a92af093e191ddb728503781c496e81532ad33d50593747f01b017cf20c0607ad107eb4b94d']}]]
+{'jsonrpc': '2.0', 'result': '84e6e8f0e00876bcec396cb57d2c8d47d848502bba25555f9019b65e843ef166', 'id': 1}
+
+test_broadcast_transaction done
+
+.sstearDownClass done
+
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.025s
+
+OK (skipped=3)
+
+'''
+

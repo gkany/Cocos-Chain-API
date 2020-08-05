@@ -2,7 +2,7 @@
 
 #http
 host = '127.0.0.1'
-port = 8048
+port = 8047
 cli_wallet_url = "http://{}:{}".format(host, port)
 
 rpc_host = '127.0.0.1'
